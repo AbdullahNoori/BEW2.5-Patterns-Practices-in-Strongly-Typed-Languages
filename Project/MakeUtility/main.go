@@ -1,19 +1,24 @@
 package main
 
 import (
-	"fmt"
-	"log"
-	"net/http"
-
-	"github.com/gorilla/mux"
+	static "github.com/gin-contrib/static"
+	"github.com/gin-gonic/gin"
+	"gopkg.in/olahol/melody.v1"
 )
 
 func main() {
-	r := mux.NewRouter()
-	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello, world!")
+	r := gin.Default()
+	m := melody.New()
+
+	r.Use(static.Serve("/", static.LocalFile("./public", true)))
+
+	r.GET("/ws", func(c *gin.Context) {
+		m.requestHandler(c.Writer, c.Request)
 	})
-	//localhost:4444 Displays Greeting in the browser
-	log.Print("Server starting at localhost:4444")
-	http.ListenAndServe(":4444", r)
+
+	m.messageHandler(func(s *melody.Session, msg []byte) {
+		m.Broadcast(msg)
+	})
+
+	r.Run(":5000")
 }
