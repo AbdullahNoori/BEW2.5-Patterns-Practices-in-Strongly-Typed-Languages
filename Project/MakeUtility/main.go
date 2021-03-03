@@ -4,8 +4,9 @@ import (
 	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 	"gopkg.in/olahol/melody.v1"
-)
 
+)
+// Factory Method
 func main() {
 	r := gin.Default()
 	m := melody.New()
@@ -21,4 +22,5 @@ func main() {
 	})
 
 	r.Run(":5000")
+
 }
