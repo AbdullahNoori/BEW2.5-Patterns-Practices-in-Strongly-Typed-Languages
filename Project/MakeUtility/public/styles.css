@@ -1,4 +1,19 @@
 #messages{
-    height:300px;
-    overflow-y: scroll;
+  height:300px;
+  overflow-y: scroll;
 }
+
+
+#chat {
+  padding: 5px;
+  background-color: rgb(248, 250, 248);
+  color: white;
+  border-radius: 5px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+body {
+  background-color: rgb(150, 125, 167)
+}
+
+
