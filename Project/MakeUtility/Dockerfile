@@ -1,6 +1,6 @@
 FROM golang:latest
 
-# Set the Current Working Directory inside the container
+# Below will set the Current Working Directory inside the container
 WORKDIR /app
 
 RUN GO111MODULE=on
